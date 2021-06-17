@@ -1,9 +1,6 @@
 package Inventario.entity;
 
-import Inventario.values.CantidadProducto;
-import Inventario.values.DescripcionProducto;
-import Inventario.values.NombreProducto;
-import Inventario.values.ProductoId;
+import Inventario.values.*;
 import co.com.sofka.domain.generic.Entity;
 
 import java.util.Objects;
@@ -12,10 +9,12 @@ public class Producto extends Entity<ProductoId> {
     private NombreProducto nombreProducto;
     private CantidadProducto cantidadProductos;
     private DescripcionProducto descripcionProducto;
-    public Producto(ProductoId entityId, NombreProducto nombreProducto, CantidadProducto cantidadProductos, DescripcionProducto descripcionProducto) {
+    private ValorProducto valorProducto;
+    public Producto(ProductoId entityId, NombreProducto nombreProducto, CantidadProducto cantidadProductos, ValorProducto valorProducto, DescripcionProducto descripcionProducto) {
         super(entityId);
         this.nombreProducto = nombreProducto;
         this.cantidadProductos = cantidadProductos;
+        this.valorProducto = valorProducto;
         this.descripcionProducto = descripcionProducto;
     }
 
@@ -26,6 +25,14 @@ public class Producto extends Entity<ProductoId> {
 
     public void actualizarDescripcionProducto(DescripcionProducto descripcionProducto){
         this.descripcionProducto = Objects.requireNonNull(descripcionProducto);
+    }
+
+    public void actualizarValorProducto(ValorProducto valorProducto){
+        this.valorProducto = Objects.requireNonNull(valorProducto);
+    }
+
+    public ValorProducto valorProducto() {
+        return valorProducto;
     }
 
     public CantidadProducto cantidadProductos() {

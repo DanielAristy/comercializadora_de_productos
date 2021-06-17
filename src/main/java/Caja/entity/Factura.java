@@ -16,8 +16,11 @@ public class Factura extends Entity<FacturaId> {
     private CajaId cajaId;
     private List<ProductoId> productos;
     private TotalFactura totalFactura;
-    public Factura(FacturaId entityId) {
+    public Factura(FacturaId entityId,ClienteId clienteId, List<ProductoId> productos, TotalFactura totalFactura ) {
         super(entityId);
+        this.clienteId = clienteId;
+        this.productos = productos;
+        this.totalFactura = totalFactura;
     }
 
     //Comportamientos

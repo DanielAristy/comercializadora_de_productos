@@ -9,12 +9,10 @@ import co.com.sofka.domain.generic.Entity;
 import java.util.Objects;
 
 public class Empleado extends Entity<EmpleadoId> {
-    private CajaId cajaId;
     private NombreEmpleado nombreEmpleado;
     private Estado estado;
-    public Empleado(EmpleadoId entityId, CajaId cajaId, NombreEmpleado nombreEmpleado, Estado estado) {
+    public Empleado(EmpleadoId entityId, NombreEmpleado nombreEmpleado, Estado estado) {
         super(entityId);
-        this.cajaId = cajaId;
         this.nombreEmpleado = nombreEmpleado;
         this.estado = estado;
     }
@@ -27,9 +25,6 @@ public class Empleado extends Entity<EmpleadoId> {
         this.estado = Objects.requireNonNull(estado);
     }
 
-    public CajaId cajaId() {
-        return cajaId;
-    }
 
     public NombreEmpleado nombreEmpleado() {
         return nombreEmpleado;
