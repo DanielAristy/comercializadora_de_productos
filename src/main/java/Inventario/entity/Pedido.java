@@ -3,22 +3,23 @@ package Inventario.entity;
 import Inventario.values.Fecha;
 import Inventario.values.PedidoId;
 import Inventario.values.ProductoId;
-import Inventario.values.TotalPedido;
+import Inventario.values.ValorTotalPedido;
 import co.com.sofka.domain.generic.Entity;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Pedido extends Entity<PedidoId> {
     private Fecha fecha;
     private List<ProductoId> productos;
-    private TotalPedido totalPedido;
+    private ValorTotalPedido valorTotalPedido;
 
-    public Pedido(PedidoId entityId, Fecha fecha, List<ProductoId> productos, TotalPedido totalPedido) {
+    public Pedido(PedidoId entityId, Fecha fecha, List<ProductoId> productos, ValorTotalPedido valorTotalPedido) {
         super(entityId);
         this.fecha = fecha;
         this.productos = productos;
-        this.totalPedido = totalPedido;
+        this.valorTotalPedido = valorTotalPedido;
     }
 
     //Comportamientos
@@ -26,8 +27,15 @@ public class Pedido extends Entity<PedidoId> {
         this.fecha = Objects.requireNonNull(fecha);
     }
 
-    public void actualizarTotal(TotalPedido totalPedido){
-        this.totalPedido = Objects.requireNonNull(totalPedido);
+    public void actualizarTotal(ValorTotalPedido valorTotalPedido){
+        this.valorTotalPedido = Objects.requireNonNull(valorTotalPedido);
+    }
+
+    public Optional<ProductoId> getProductoPorId(ProductoId productoId){
+        return productos()
+                .stream()
+                .filter(id -> id.equals(productoId))
+                .findFirst();
     }
 
     public List<ProductoId> productos() {
@@ -38,7 +46,7 @@ public class Pedido extends Entity<PedidoId> {
         return fecha;
     }
 
-    public TotalPedido totalPedido() {
-        return totalPedido;
+    public ValorTotalPedido totalPedido() {
+        return valorTotalPedido;
     }
 }
