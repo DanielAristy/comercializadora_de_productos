@@ -10,11 +10,10 @@ public class Caja extends AggregateEvent<CajaId> {
     protected Saldo saldo;
     protected ClienteId clienteId;
     protected EmpleadoId empleadoId;
-    public Caja(CajaId entityId, Turno turno, Saldo saldo) {
-        super(entityId);
+    public Caja(CajaId id, Turno turno, Saldo saldo) {
+        super(id);
         appendChange(new CajaCreada(turno,saldo)).apply();
     }
-
 
     public void asociarCliente(ClienteId clienteId){
         appendChange(new ClienteAsociado(clienteId,empleadoId)).apply();
