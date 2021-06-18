@@ -1,6 +1,6 @@
 package Caja.usecase;
 
-import Caja.commands.CambiarActivo;
+import Caja.commands.CambiarEstado;
 import Caja.events.CajaCreada;
 import Caja.events.EstadoCambiado;
 import Caja.values.CajaId;
@@ -40,7 +40,7 @@ class CambiarEstadoUseCaseTest {
     @Test
     void cambiarActivoHappyPath(){
         //Arrange
-        var command = new CambiarActivo(
+        var command = new CambiarEstado(
                 CajaId.of("1"),
                 new Estado(false)
         );
@@ -54,12 +54,13 @@ class CambiarEstadoUseCaseTest {
 
         var events = response.getDomainEvents();
         //Assert
+        //Evento
         EstadoCambiado estadoCambiado = (EstadoCambiado)events.get(0);
         Assertions.assertEquals("comercializadora.caja.estadocambiado", estadoCambiado.type);
     }
 
     private List<DomainEvent> events(){
-        return List.of(new CajaCreada(
+        return List.of(new CajaCreada(//Evento
                 new Estado(true),
                 new Total(2000.0)
         ));

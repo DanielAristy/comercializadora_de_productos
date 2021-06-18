@@ -62,4 +62,20 @@ public class Inventario extends AggregateEvent<InventarioId> {
     protected Optional<TipoProducto> getProductoId(TipoProductoId tipoProductoId){
         return tipoProductos.stream().filter(id -> id.equals(tipoProductoId)).findFirst();
     }
+
+    public IngresoProductoId getIngresoProductoId() {
+        return ingresoProductoId;
+    }
+
+    public List<TipoProducto> getTipoProductos() {
+        return tipoProductos;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public Descripcion getDescripcion() {
+        return descripcion;
+    }
 }

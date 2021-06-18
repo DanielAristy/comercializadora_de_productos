@@ -4,11 +4,8 @@ import Inventario.entity.Producto;
 import Inventario.entity.TipoProducto;
 import Inventario.values.Descripcion;
 import Inventario.values.InventarioId;
-import Inventario.values.ProductoId;
-import Inventario.values.TipoProductoId;
 import co.com.sofka.domain.generic.DomainEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InventarioCreado extends DomainEvent {
