@@ -3,7 +3,7 @@ package Caja;
 import Caja.events.CajaCreada;
 import Caja.events.ClienteAsociado;
 import Caja.events.TurnoCambiado;
-import Caja.events.ValorEnCajaCambiado;
+import Caja.events.TotalCambiado;
 import co.com.sofka.domain.generic.EventChange;
 
 public class CajaChange extends EventChange {
@@ -23,7 +23,7 @@ public class CajaChange extends EventChange {
             caja.activo = event.getActivo();
         });
 
-        apply((ValorEnCajaCambiado event) -> {
+        apply((TotalCambiado event) -> {
             caja.total = event.getTotal();
         });
     }

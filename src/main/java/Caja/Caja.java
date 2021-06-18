@@ -3,7 +3,7 @@ package Caja;
 import Caja.events.CajaCreada;
 import Caja.events.ClienteAsociado;
 import Caja.events.TurnoCambiado;
-import Caja.events.ValorEnCajaCambiado;
+import Caja.events.TotalCambiado;
 import Caja.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 
@@ -32,8 +32,8 @@ public class Caja extends AggregateEvent<CajaId> {
         appendChange(new TurnoCambiado(activo)).apply();
     }
 
-    public void cambiarValorEnCaja(Total total){
-        appendChange(new ValorEnCajaCambiado(total)).apply();
+    public void cambiarTotal(Total total){
+        appendChange(new TotalCambiado(total)).apply();
     }
 
 }
