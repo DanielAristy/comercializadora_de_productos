@@ -4,6 +4,7 @@ import Caja.commands.CrearCaja;
 import Caja.events.CajaCreada;
 import Caja.values.Activo;
 import Caja.values.CajaId;
+import Caja.values.Estado;
 import Caja.values.Total;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.support.RequestCommand;
@@ -27,7 +28,7 @@ class CrearCajaUseCaseTest {
         //Arrange
         var command = new CrearCaja(
                 CajaId.of("adnlg"),
-                new Activo(true),
+                new Estado(true),
                 new Total(0.0)
         );
 
@@ -40,7 +41,7 @@ class CrearCajaUseCaseTest {
 
         //asserts
         CajaCreada cajaCreada = (CajaCreada) events.get(0);
-        Assertions.assertEquals(true, cajaCreada.getActivo().value().booleanValue());
+        Assertions.assertEquals(true, cajaCreada.getEstado().value().booleanValue());
         Assertions.assertEquals(0.0, cajaCreada.getTotal().value().doubleValue());
     }
 

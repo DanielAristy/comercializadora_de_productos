@@ -1,23 +1,23 @@
 package Caja.commands;
 
-import Caja.Caja;
-import Caja.values.Activo;
+import Caja.values.CajaId;
+import Caja.values.Estado;
 import co.com.sofka.domain.generic.Command;
 
 public class CambiarActivo implements Command {
-    private final Caja caja;
-    private final Activo activo;
+    private final CajaId cajaId;
+    private final Estado estado;
 
-    public CambiarActivo(Caja caja, Activo activo) {
-        this.caja = caja;
-        this.activo = activo;
+    public CambiarActivo(CajaId cajaId, Estado estado) {
+        this.cajaId = cajaId;
+        this.estado = estado;
     }
 
-    public Caja getCaja() {
-        return caja;
+    public CajaId getCajaId() {
+        return cajaId;
     }
 
-    public Activo getActivo() {
-        return activo;
+    public Estado getEstado() {
+        return estado;
     }
 }

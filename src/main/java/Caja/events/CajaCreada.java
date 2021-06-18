@@ -1,20 +1,21 @@
 package Caja.events;
 
 import Caja.values.Activo;
+import Caja.values.Estado;
 import Caja.values.Total;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class CajaCreada extends DomainEvent {
-    private final Activo activo;
     private final Total total;
-    public CajaCreada(Activo activo, Total total) {
+    private final Estado estado;
+    public CajaCreada(Estado estado, Total total) {
         super("comercializadora.caja.cajacreada");
-        this.activo = activo;
+        this.estado = estado;
         this.total = total;
     }
 
-    public Activo getActivo() {
-        return activo;
+    public Estado getEstado() {
+        return estado;
     }
 
     public Total getTotal() {

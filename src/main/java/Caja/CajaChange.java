@@ -1,8 +1,8 @@
 package Caja;
 
 import Caja.events.CajaCreada;
-import Caja.events.ClienteAsociado;
-import Caja.events.TurnoCambiado;
+import Caja.events.EmpleadoAsociado;
+import Caja.events.EstadoCambiado;
 import Caja.events.TotalCambiado;
 import co.com.sofka.domain.generic.EventChange;
 
@@ -11,16 +11,16 @@ public class CajaChange extends EventChange {
     public CajaChange(Caja caja) {
 
         apply((CajaCreada event) -> {
-            caja.activo = event.getActivo();
+            caja.estado = event.getEstado();
             caja.total = event.getTotal();
         });
-        apply((ClienteAsociado event) -> {
-            caja.clienteId = event.getClienteId();
+        apply((EmpleadoAsociado event) -> {
+//            caja. = event.getCajaId();
             caja.empleadoId = event.getEmpleadoId();
         });
 
-        apply((TurnoCambiado event) -> {
-            caja.activo = event.getActivo();
+        apply((EstadoCambiado event) -> {
+            caja.estado = event.getEstado();
         });
 
         apply((TotalCambiado event) -> {
