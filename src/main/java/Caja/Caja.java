@@ -12,6 +12,8 @@ public class Caja extends AggregateEvent<CajaId> {
     protected Total total;
     protected ClienteId clienteId;
     protected EmpleadoId empleadoId;
+
+
     public Caja(CajaId id, Activo activo, Total total) {
         super(id);
         appendChange(new CajaCreada(activo, total)).apply();
