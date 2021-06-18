@@ -10,6 +10,8 @@ import Inventario.events.ProductoAgregado;
 import Inventario.events.TipoProductoAgregado;
 import Inventario.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +33,13 @@ public class Inventario extends AggregateEvent<InventarioId> {
         subscribe(new InventarioChange(this));
     }
 
+    //Factoria para crear un objeto con instancias y valores guardados
+    public static Inventario from(InventarioId inventarioId, List<DomainEvent> events){
+        var inventario = new Inventario(inventarioId);
+        events.forEach(inventario::applyEvent);
+        return inventario;
+    }
+
     public void cambiarDescripcion(Descripcion descripcion){
         appendChange(new DescripcionInventarioCambiado(descripcion)).apply();
     }
@@ -44,11 +53,11 @@ public class Inventario extends AggregateEvent<InventarioId> {
         appendChange(new TipoProductoAgregado(id,nombre,cantidad,valor)).apply();
     }
 
-    public Optional<Producto> getProductoId(ProductoId productoId){
+    protected Optional<Producto> getProductoId(ProductoId productoId){
         return productos.stream().filter(id -> id.equals(productoId)).findFirst();
     }
 
-    public Optional<TipoProducto> getProductoId(TipoProductoId tipoProductoId){
+    protected Optional<TipoProducto> getProductoId(TipoProductoId tipoProductoId){
         return tipoProductos.stream().filter(id -> id.equals(tipoProductoId)).findFirst();
     }
 }
