@@ -10,7 +10,7 @@ public class DescripcionInventarioCambiado extends DomainEvent {
         this.descripcion = descripcion;
     }
 
-    public Descripcion getDescripcionInventario() {
+    public Descripcion getDescripcion() {
         return descripcion;
     }
 }
