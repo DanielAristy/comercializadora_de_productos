@@ -17,10 +17,17 @@ public class Inventario extends AggregateEvent<InventarioId> {
     protected List<TipoProductoId> tipoProductos;
     protected List<ProductoId> productos;
     protected Descripcion descripcion;
+
+
     public Inventario(InventarioId entityId, List<TipoProducto> tipoProductos,
                       List<Producto> productos, Descripcion descripcion) {
         super(entityId);
         appendChange(new InventarioCreado(tipoProductos,productos, descripcion)).apply();
+    }
+
+    private Inventario(InventarioId id){
+        super(id);
+        subscribe(new InventarioChange(this));
     }
 
     public void cambiarDescripcion(Descripcion descripcion){

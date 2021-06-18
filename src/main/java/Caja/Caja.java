@@ -17,6 +17,11 @@ public class Caja extends AggregateEvent<CajaId> {
         appendChange(new CajaCreada(activo, total)).apply();
     }
 
+    private Caja(CajaId id){
+        super(id);
+        subscribe(new CajaChange(this));
+    }
+
     public void asociarCliente(ClienteId clienteId){
         appendChange(new ClienteAsociado(clienteId,empleadoId)).apply();
     }

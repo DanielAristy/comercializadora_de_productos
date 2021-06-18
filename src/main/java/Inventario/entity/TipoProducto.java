@@ -16,8 +16,12 @@ public class TipoProducto extends Entity<TipoProductoId> {
         this.cantidad = cantidad;
     }
     //Comportamientos
-    public void actualizarNombreTipoProducto(Nombre nombre){
+    public void actualizarNombre(Nombre nombre){
         this.nombre = Objects.requireNonNull(nombre);
+    }
+
+    public void actualizarCantidad(Cantidad cantidad){
+        this.cantidad = Objects.requireNonNull(cantidad);
     }
 
     public Cantidad getCantidad() {
