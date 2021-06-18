@@ -26,7 +26,7 @@ public class Caja extends AggregateEvent<CajaId> {
         appendChange(new ClienteAsociado(clienteId,empleadoId)).apply();
     }
 
-    public void cambiarTurno(Activo activo){
+    public void cambiarActivo(Activo activo){
         appendChange(new TurnoCambiado(activo)).apply();
     }
 
