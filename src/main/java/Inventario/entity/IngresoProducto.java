@@ -1,29 +1,28 @@
 package Inventario.entity;
 
-import Inventario.values.CantidadAIngresar;
+import Inventario.values.Cantidad;
 import Inventario.values.IngresoProductoId;
 import Inventario.values.ProductoId;
 import Inventario.values.Proveedor;
 import co.com.sofka.domain.generic.Entity;
 
-import java.util.List;
 import java.util.Objects;
 
 public class IngresoProducto extends Entity<IngresoProductoId> {
     private ProductoId productoId;
-    private CantidadAIngresar cantidadAIngresar;
+    private Cantidad cantidad;
     private Proveedor proveedor;
 
-    public IngresoProducto(IngresoProductoId entityId, ProductoId productoId, CantidadAIngresar cantidadAIngresar, Proveedor proveedor) {
+    public IngresoProducto(IngresoProductoId entityId, ProductoId productoId, Cantidad cantidad, Proveedor proveedor) {
         super(entityId);
         this.productoId = productoId;
-        this.cantidadAIngresar = cantidadAIngresar;
+        this.cantidad = cantidad;
         this.proveedor = proveedor;
     }
 
     //Comportamientos
-    public void actualizarCantidadAIngresar(CantidadAIngresar cantidadAIngresar){
-        this.cantidadAIngresar = Objects.requireNonNull(cantidadAIngresar);
+    public void actualizarCantidadAIngresar(Cantidad cantidad){
+        this.cantidad = Objects.requireNonNull(cantidad);
     }
 
     public void actualizarProveedor(Proveedor proveedor){
@@ -34,8 +33,8 @@ public class IngresoProducto extends Entity<IngresoProductoId> {
         return productoId;
     }
 
-    public CantidadAIngresar cantidadAIngresar() {
-        return cantidadAIngresar;
+    public Cantidad cantidadAIngresar() {
+        return cantidad;
     }
 
     public Proveedor proveedor() {

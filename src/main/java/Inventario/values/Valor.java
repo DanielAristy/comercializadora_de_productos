@@ -2,9 +2,9 @@ package Inventario.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
-public class CantidadAIngresar implements ValueObject<Integer> {
+public class Valor implements ValueObject<Double> {
     @Override
-    public Integer value() {
+    public Double value() {
         return null;
     }
 }

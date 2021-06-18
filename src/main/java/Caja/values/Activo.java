@@ -2,9 +2,9 @@ package Caja.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
-public class ValorEnCaja implements ValueObject<Double> {
+public class Activo implements ValueObject<Boolean> {
     @Override
-    public Double value() {
+    public Boolean value() {
         return null;
     }
 }

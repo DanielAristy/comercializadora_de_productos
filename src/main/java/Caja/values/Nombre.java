@@ -2,9 +2,9 @@ package Caja.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
-public class Turno implements ValueObject<Boolean> {
+public class Nombre implements ValueObject<String> {
     @Override
-    public Boolean value() {
+    public String value() {
         return null;
     }
 }

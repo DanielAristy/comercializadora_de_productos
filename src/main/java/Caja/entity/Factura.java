@@ -3,29 +3,27 @@ package Caja.entity;
 import Caja.values.CajaId;
 import Caja.values.ClienteId;
 import Caja.values.FacturaId;
-import Caja.values.TotalFactura;
+import Caja.values.Total;
 import Inventario.values.ProductoId;
 import co.com.sofka.domain.generic.Entity;
-
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Factura extends Entity<FacturaId> {
     private ClienteId clienteId;
     private CajaId cajaId;
     private List<ProductoId> productos;
-    private TotalFactura totalFactura;
-    public Factura(FacturaId entityId,ClienteId clienteId, List<ProductoId> productos, TotalFactura totalFactura ) {
+    private Total total;
+    public Factura(FacturaId entityId,ClienteId clienteId, List<ProductoId> productos,Total total) {
         super(entityId);
         this.clienteId = clienteId;
         this.productos = productos;
-        this.totalFactura = totalFactura;
+        this.total = total;
     }
 
     //Comportamientos
-    public void actualizarTotalFactura(TotalFactura totalFactura){
-        this.totalFactura = Objects.requireNonNull(totalFactura);
+    public void actualizarTotalFactura(Total total){
+        this.total = Objects.requireNonNull(total);
     }
 
     public ClienteId clienteId() {
@@ -40,7 +38,7 @@ public class Factura extends Entity<FacturaId> {
         return productos;
     }
 
-    public TotalFactura totalFactura() {
-        return totalFactura;
+    public Total getTotal() {
+        return total;
     }
 }

@@ -1,49 +1,38 @@
 package Inventario.entity;
 
+import Caja.values.Nombre;
 import Inventario.values.*;
 import co.com.sofka.domain.generic.Entity;
 
 import java.util.Objects;
 
 public class Producto extends Entity<ProductoId> {
-    private NombreProducto nombreProducto;
-    private CantidadProducto cantidadProductos;
-    private DescripcionProducto descripcionProducto;
-    private ValorProducto valorProducto;
-    public Producto(ProductoId entityId, NombreProducto nombreProducto, CantidadProducto cantidadProductos, ValorProducto valorProducto, DescripcionProducto descripcionProducto) {
+    private Nombre nombre;
+    private Cantidad cantidad;
+    private Valor valor;
+
+    public Producto(ProductoId entityId, Nombre nombre, Cantidad cantidad, Valor valor) {
         super(entityId);
-        this.nombreProducto = nombreProducto;
-        this.cantidadProductos = cantidadProductos;
-        this.valorProducto = valorProducto;
-        this.descripcionProducto = descripcionProducto;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.valor = valor;
     }
 
     //comportamientos
-    public void actulizarNombreProducto(NombreProducto nombreProducto){
-        this.nombreProducto = Objects.requireNonNull(nombreProducto);
+    public void actulizarNombreProducto(Nombre nombre) {
+        this.nombre = Objects.requireNonNull(nombre);
     }
 
-    public void actualizarDescripcionProducto(DescripcionProducto descripcionProducto){
-        this.descripcionProducto = Objects.requireNonNull(descripcionProducto);
+    public void actualizarValorProducto(Valor valor) {
+        this.valor = Objects.requireNonNull(valor);
     }
 
-    public void actualizarValorProducto(ValorProducto valorProducto){
-        this.valorProducto = Objects.requireNonNull(valorProducto);
+    public Valor valorProducto() {
+        return valor;
     }
 
-    public ValorProducto valorProducto() {
-        return valorProducto;
+    public Cantidad getCantidad() {
+        return cantidad;
     }
 
-    public CantidadProducto cantidadProductos() {
-        return cantidadProductos;
-    }
-
-    public NombreProducto nombreProducto() {
-        return nombreProducto;
-    }
-
-    public DescripcionProducto descripcionProducto() {
-        return descripcionProducto;
-    }
 }

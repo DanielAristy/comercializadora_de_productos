@@ -1,34 +1,30 @@
 package Inventario.entity;
 
-import Inventario.values.Descuento;
-import Inventario.values.NombreTipoProducto;
+import Caja.values.Nombre;
+import Inventario.values.Cantidad;
 import Inventario.values.TipoProductoId;
 import co.com.sofka.domain.generic.Entity;
 
 import java.util.Objects;
 
 public class TipoProducto extends Entity<TipoProductoId> {
-    private NombreTipoProducto nombreTipoProducto;
-    private Descuento descuento;
-    public TipoProducto(TipoProductoId entityId, NombreTipoProducto nombreTipoProducto, Descuento descuento) {
+    private Nombre nombre;
+    private Cantidad cantidad;
+    public TipoProducto(TipoProductoId entityId, Nombre nombre, Cantidad cantidad) {
         super(entityId);
-        this.nombreTipoProducto = nombreTipoProducto;
-        this.descuento = descuento;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
     }
     //Comportamientos
-    public void actualizarNombreTipoProducto(NombreTipoProducto nombreTipoProducto){
-        this.nombreTipoProducto = Objects.requireNonNull(nombreTipoProducto);
+    public void actualizarNombreTipoProducto(Nombre nombre){
+        this.nombre = Objects.requireNonNull(nombre);
     }
 
-    public void actualizarDescuento(Descuento descuento){
-        this.descuento = Objects.requireNonNull(descuento);
+    public Cantidad getCantidad() {
+        return cantidad;
     }
 
-    public NombreTipoProducto nombreTipoProducto() {
-        return nombreTipoProducto;
-    }
-
-    public Descuento descuento() {
-        return descuento;
+    public Nombre getNombre() {
+        return nombre;
     }
 }

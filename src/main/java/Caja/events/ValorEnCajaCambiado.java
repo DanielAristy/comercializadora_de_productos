@@ -1,12 +1,16 @@
 package Caja.events;
 
-import Caja.values.ValorEnCaja;
+import Caja.values.Total;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class ValorEnCajaCambiado extends DomainEvent {
-    private ValorEnCaja valorEnCaja;
-    public ValorEnCajaCambiado(ValorEnCaja valorEnCaja) {
+    private Total total;
+    public ValorEnCajaCambiado(Total total) {
         super("comercializadora.caja.valorencajacambiado");
-        this.valorEnCaja = valorEnCaja;
+        this.total = total;
+    }
+
+    public Total getTotal() {
+        return total;
     }
 }

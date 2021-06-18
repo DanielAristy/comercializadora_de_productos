@@ -1,23 +1,23 @@
 package Caja.events;
 
-import Caja.values.ValorEnCaja;
-import Caja.values.Turno;
+import Caja.values.Activo;
+import Caja.values.Total;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class CajaCreada extends DomainEvent {
-    private final Turno turno;
-    private final ValorEnCaja valorEnCaja;
-    public CajaCreada(Turno turno, ValorEnCaja valorEnCaja) {
+    private final Activo activo;
+    private final Total total;
+    public CajaCreada(Activo activo, Total total) {
         super("comercializadora.caja.cajacreada");
-        this.turno = turno;
-        this.valorEnCaja = valorEnCaja;
+        this.activo = activo;
+        this.total = total;
     }
 
-    public Turno getTurno() {
-        return turno;
+    public Activo getActivo() {
+        return activo;
     }
 
-    public ValorEnCaja getSaldo() {
-        return valorEnCaja;
+    public Total getTotal() {
+        return total;
     }
 }

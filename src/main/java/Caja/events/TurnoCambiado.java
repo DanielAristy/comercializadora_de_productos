@@ -1,12 +1,16 @@
 package Caja.events;
 
-import Caja.values.Turno;
+import Caja.values.Activo;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class TurnoCambiado extends DomainEvent {
-    private Turno turno;
-    public TurnoCambiado(Turno turno) {
+    private Activo activo;
+    public TurnoCambiado(Activo activo) {
         super("comercializadora.caja.turnocambiado");
-        this.turno = turno;
+        this.activo = activo;
+    }
+
+    public Activo getActivo() {
+        return activo;
     }
 }

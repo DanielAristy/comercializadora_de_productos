@@ -1,36 +1,34 @@
 package Caja.entity;
 
-import Caja.values.CajaId;
 import Caja.values.EmpleadoId;
-import Caja.values.Estado;
-import Caja.values.NombreEmpleado;
+import Caja.values.Activo;
+import Caja.values.Nombre;
 import co.com.sofka.domain.generic.Entity;
 
 import java.util.Objects;
 
 public class Empleado extends Entity<EmpleadoId> {
-    private NombreEmpleado nombreEmpleado;
-    private Estado estado;
-    public Empleado(EmpleadoId entityId, NombreEmpleado nombreEmpleado, Estado estado) {
-        super(entityId);
-        this.nombreEmpleado = nombreEmpleado;
-        this.estado = estado;
+    private Nombre nombre;
+    private Activo activo;
+    public Empleado(EmpleadoId id, Nombre nombre, Activo activo) {
+        super(id);
+        this.nombre = nombre;
+        this.activo = activo;
     }
     //Comportamientos
-    public void actualizarNombreEmpleado(NombreEmpleado nombreEmpleado){
-        this.nombreEmpleado = Objects.requireNonNull(nombreEmpleado);
+    public void actualizarNombreEmpleado(Nombre nombre){
+        this.nombre = Objects.requireNonNull(nombre);
     }
 
-    public void actualizarEstado(Estado estado){
-        this.estado = Objects.requireNonNull(estado);
+    public void actualizarActivo(Activo activo){
+        this.activo = Objects.requireNonNull(activo);
     }
 
-
-    public NombreEmpleado nombreEmpleado() {
-        return nombreEmpleado;
+    public Nombre nombre() {
+        return nombre;
     }
 
-    public Estado estado() {
-        return estado;
+    public Activo estado() {
+        return activo;
     }
 }

@@ -1,19 +1,17 @@
 package Caja.commands;
 
 import Caja.values.CajaId;
-import Caja.values.ValorEnCaja;
-import Caja.values.Turno;
 import co.com.sofka.domain.generic.Command;
 
 public class CrearCaja implements Command {
     private final CajaId id;
     private final Turno turno;
-    private final ValorEnCaja valorEnCaja;
+    private final Valor valor;
 
-    public CrearCaja(CajaId id, Turno turno, ValorEnCaja valorEnCaja) {
+    public CrearCaja(CajaId id, Turno turno, Valor valor) {
         this.id = id;
         this.turno = turno;
-        this.valorEnCaja = valorEnCaja;
+        this.valor = valor;
     }
 
     public CajaId getId() {
@@ -24,7 +22,7 @@ public class CrearCaja implements Command {
         return turno;
     }
 
-    public ValorEnCaja getSaldo() {
-        return valorEnCaja;
+    public Valor getSaldo() {
+        return valor;
     }
 }
