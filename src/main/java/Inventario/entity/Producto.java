@@ -18,6 +18,7 @@ public class Producto extends Entity<ProductoId> {
         this.valor = valor;
     }
 
+
     //comportamientos
     public void actulizarNombreProducto(Nombre nombre) {
         this.nombre = Objects.requireNonNull(nombre);

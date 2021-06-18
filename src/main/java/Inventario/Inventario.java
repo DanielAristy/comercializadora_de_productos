@@ -1,5 +1,6 @@
 package Inventario;
 
+import Caja.values.CajaId;
 import Caja.values.Nombre;
 import Caja.values.Total;
 import Inventario.entity.Producto;
@@ -32,6 +33,7 @@ public class Inventario extends AggregateEvent<InventarioId> {
         super(id);
         subscribe(new InventarioChange(this));
     }
+
 
     //Factoria para crear un objeto con instancias y valores guardados
     public static Inventario from(InventarioId inventarioId, List<DomainEvent> events){

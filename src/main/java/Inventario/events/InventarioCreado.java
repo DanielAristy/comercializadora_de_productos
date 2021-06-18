@@ -19,8 +19,8 @@ public class InventarioCreado extends DomainEvent {
     public InventarioCreado(InventarioId inventarioId, List<TipoProducto> tipoProductos, List<Producto> productos, Descripcion descripcion) {
         super("comercializadora.inventario.inventariocreado");
         this.inventarioId = inventarioId;
-        this.tipoProductos = new ArrayList<>();
-        this.productos = new ArrayList<>();
+        this.tipoProductos = tipoProductos;
+        this.productos = productos;
         this.descripcion = descripcion;
     }
 
