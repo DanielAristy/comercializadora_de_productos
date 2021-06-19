@@ -16,11 +16,11 @@ public class Empleado extends Entity<EmpleadoId> {
         this.activo = activo;
     }
     //Comportamientos
-    public void actualizarNombreEmpleado(Nombre nombre){
+    public void actualizarNombre(Nombre nombre){
         this.nombre = Objects.requireNonNull(nombre);
     }
 
-    public void actualizarActivo(Activo activo){
+    public void cambiarActivo(Activo activo){
         this.activo = Objects.requireNonNull(activo);
     }
 
@@ -28,7 +28,7 @@ public class Empleado extends Entity<EmpleadoId> {
         return nombre;
     }
 
-    public Activo estado() {
+    public Activo activo() {
         return activo;
     }
 }

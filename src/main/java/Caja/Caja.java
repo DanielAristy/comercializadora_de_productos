@@ -41,7 +41,7 @@ public class Caja extends AggregateEvent<CajaId> {
         appendChange(new EmpleadoAsociado(empleadoId,cajaId)).apply();
     }
 
-    public void cambiarActivo(Estado estado){
+    public void cambiarEstado(Estado estado){
         appendChange(new EstadoCambiado(estado)).apply();
     }
 

@@ -10,13 +10,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Factura extends Entity<FacturaId> {
-    private ClienteId clienteId;
-    private CajaId cajaId;
     private List<ProductoId> productos;
     private Total total;
-    public Factura(FacturaId entityId,ClienteId clienteId, List<ProductoId> productos,Total total) {
+    public Factura(FacturaId entityId, List<ProductoId> productos,Total total) {
         super(entityId);
-        this.clienteId = clienteId;
         this.productos = productos;
         this.total = total;
     }
@@ -24,14 +21,6 @@ public class Factura extends Entity<FacturaId> {
     //Comportamientos
     public void actualizarTotalFactura(Total total){
         this.total = Objects.requireNonNull(total);
-    }
-
-    public ClienteId clienteId() {
-        return clienteId;
-    }
-
-    public CajaId cajaId() {
-        return cajaId;
     }
 
     public List<ProductoId> productos() {

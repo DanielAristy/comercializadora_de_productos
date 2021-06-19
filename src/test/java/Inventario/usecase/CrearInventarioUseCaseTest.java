@@ -59,7 +59,4 @@ class CrearInventarioUseCaseTest {
         Assertions.assertEquals("Productos de la canasta familiar", inventarioCreado.getDescripcionInventario().value());
 
     }
-
-
-
 }

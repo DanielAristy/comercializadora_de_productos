@@ -11,7 +11,7 @@ public class CambiarEstadoUseCase extends UseCase<RequestCommand<CambiarEstado>,
     public void executeUseCase(RequestCommand<CambiarEstado> cambiarActivoRequestCommand) {
         var command = cambiarActivoRequestCommand.getCommand();
         var caja = Caja.from(command.getCajaId(), retrieveEvents(command.getCajaId().value()));
-        caja.cambiarActivo(caja.getEstado());
+        caja.cambiarEstado(caja.getEstado());
         emit().onResponse(new ResponseEvents(caja.getUncommittedChanges()));
     }
 }

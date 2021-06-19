@@ -6,7 +6,7 @@ import co.com.sofka.domain.generic.DomainEvent;
 public class TotalCambiado extends DomainEvent {
     private Total total;
     public TotalCambiado(Total total) {
-        super("comercializadora.caja.valorencajacambiado");
+        super("comercializadora.caja.valorcambiado");
         this.total = total;
     }
 
