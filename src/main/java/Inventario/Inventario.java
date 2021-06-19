@@ -5,10 +5,7 @@ import Caja.values.Nombre;
 import Caja.values.Total;
 import Inventario.entity.Producto;
 import Inventario.entity.TipoProducto;
-import Inventario.events.DescripcionInventarioCambiado;
-import Inventario.events.InventarioCreado;
-import Inventario.events.ProductoAgregado;
-import Inventario.events.TipoProductoAgregado;
+import Inventario.events.*;
 import Inventario.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -21,12 +18,13 @@ public class Inventario extends AggregateEvent<InventarioId> {
     protected List<TipoProducto> tipoProductos;
     protected List<Producto> productos;
     protected Descripcion descripcion;
+    protected TipoInventario tipo;
 
 
     public Inventario(InventarioId id, List<TipoProducto> tipoProductos,
-                      List<Producto> productos, Descripcion descripcion) {
+                      List<Producto> productos, Descripcion descripcion, TipoInventario tipo) {
         super(id);
-        appendChange(new InventarioCreado(id,tipoProductos,productos, descripcion)).apply();
+        appendChange(new InventarioCreado(id,tipoProductos,productos, descripcion, tipo)).apply();
     }
 
     private Inventario(InventarioId id){
@@ -44,6 +42,10 @@ public class Inventario extends AggregateEvent<InventarioId> {
 
     public void cambiarDescripcion(Descripcion descripcion){
         appendChange(new DescripcionInventarioCambiado(descripcion)).apply();
+    }
+
+    public void actualizarTipoInventario(TipoInventario tipo){
+        appendChange(new TipoInventarioActualizado(tipo)).apply();
     }
 
     public void agregarProducto(ProductoId id, Nombre nombre,
@@ -77,5 +79,9 @@ public class Inventario extends AggregateEvent<InventarioId> {
 
     public Descripcion getDescripcion() {
         return descripcion;
+    }
+
+    public TipoInventario getTipo() {
+        return tipo;
     }
 }

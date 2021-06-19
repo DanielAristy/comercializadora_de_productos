@@ -1,12 +1,13 @@
 package Inventario.usecase;
 
 import Caja.values.Nombre;
-import Inventario.Inventario;
+import Inventario.commands.ActualizarTipoInventario;
 import Inventario.commands.CambiarDescripcion;
 import Inventario.entity.Producto;
 import Inventario.entity.TipoProducto;
 import Inventario.events.DescripcionInventarioCambiado;
 import Inventario.events.InventarioCreado;
+import Inventario.events.TipoInventarioActualizado;
 import Inventario.values.*;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
@@ -22,13 +23,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-class CambiarDescripcionUseCaseTest {
+class ActualizarTipoInventarioUseCaseTest {
 
-    private CambiarDescripcionUseCase cambiarDescripcionUseCase;
+    private ActualizarTipoInventarioUseCase actualizarTipoInventarioUseCase;
     private List<Producto> productos;
     private List<TipoProducto> tipoProductos;
 
@@ -37,9 +39,9 @@ class CambiarDescripcionUseCaseTest {
 
     @BeforeEach
     public void setup(){
-        cambiarDescripcionUseCase = new CambiarDescripcionUseCase();
+        actualizarTipoInventarioUseCase = new ActualizarTipoInventarioUseCase();
         repository = mock(DomainEventRepository.class);
-        cambiarDescripcionUseCase.addRepository(repository);
+        actualizarTipoInventarioUseCase.addRepository(repository);
 
         productos = new ArrayList<>();
         productos.add(new Producto(new ProductoId("1"),new Nombre("Leche Colanta"),new Cantidad(2),new Valor(2000.0)));
@@ -51,9 +53,9 @@ class CambiarDescripcionUseCaseTest {
     @Test
     void cambiarDescripcionHappyPath(){
         //Arrange
-        var command = new CambiarDescripcion(//Commando
+        var command = new ActualizarTipoInventario(//Commando
                 InventarioId.of("adflg"),
-                new Descripcion("Productos canasta familia")
+                new TipoInventario("Fisica")
         );
         when(repository.getEventsBy("adflg")).thenReturn(events());
 
@@ -61,15 +63,15 @@ class CambiarDescripcionUseCaseTest {
         var response = UseCaseHandler.getInstance()
                 .setIdentifyExecutor("adflg")
                 .syncExecutor(
-                        cambiarDescripcionUseCase, new RequestCommand<>(command)
+                        actualizarTipoInventarioUseCase, new RequestCommand<>(command)
                 ).orElseThrow();
 
         var events = response.getDomainEvents();
 
         //Assert
         //Evento
-        DescripcionInventarioCambiado cambiado = (DescripcionInventarioCambiado)events.get(0);
-        Assertions.assertEquals("comercializadora.inventario.descripcioninventariocambiado", cambiado.type);
+        TipoInventarioActualizado tipo = (TipoInventarioActualizado)events.get(0);
+        Assertions.assertEquals("comercializadora.inventario.tipodeinvetarioactualizado", tipo.type);
     }
 
     private List<DomainEvent> events(){

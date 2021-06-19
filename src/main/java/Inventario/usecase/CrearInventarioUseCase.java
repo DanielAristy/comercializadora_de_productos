@@ -10,7 +10,8 @@ public class CrearInventarioUseCase extends UseCase<RequestCommand<CrearInventar
     @Override
     public void executeUseCase(RequestCommand<CrearInventario> crearInventarioRequestCommand) {
         var command = crearInventarioRequestCommand.getCommand();
-        var inventario = new Inventario(command.getId(), command.getTipoProductos(),command.getProductos(), command.getDescripcion());
+        var inventario = new Inventario(command.getId(), command.getTipoProductos()
+                ,command.getProductos(), command.getDescripcion(),command.getTipo());
         emit().onResponse(new ResponseEvents((inventario.getUncommittedChanges())));
     }
 }

@@ -11,6 +11,7 @@ public class AsociarEmpleadoUseCase extends UseCase<RequestCommand<AsociarEmplea
     public void executeUseCase(RequestCommand<AsociarEmpleado> asociarEmpleadoRequestCommand) {
         var command = asociarEmpleadoRequestCommand.getCommand();
         var caja = Caja.from(command.getCajaId(), retrieveEvents(command.getCajaId().value()));
-//        caja.asociarEmpleado(command.getEmpleadoId());
+        caja.asociarEmpleado(command.getEmpleadoId(), command.getCajaId());
+        emit().onResponse(new ResponseEvents(caja.getUncommittedChanges()));
     }
 }

@@ -1,5 +1,6 @@
 package Inventario.events;
 
+import Caja.values.CajaId;
 import Caja.values.Nombre;
 import Inventario.values.Cantidad;
 import Inventario.values.TipoProductoId;

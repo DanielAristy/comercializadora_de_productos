@@ -79,4 +79,6 @@ public class Caja extends AggregateEvent<CajaId> {
     public Fecha getFecha() {
         return fecha;
     }
+
+
 }

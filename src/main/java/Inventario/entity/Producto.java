@@ -35,5 +35,4 @@ public class Producto extends Entity<ProductoId> {
     public Cantidad getCantidad() {
         return cantidad;
     }
-
 }

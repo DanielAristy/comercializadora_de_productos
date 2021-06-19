@@ -2,10 +2,7 @@ package Inventario;
 
 import Inventario.entity.Producto;
 import Inventario.entity.TipoProducto;
-import Inventario.events.DescripcionInventarioCambiado;
-import Inventario.events.InventarioCreado;
-import Inventario.events.ProductoAgregado;
-import Inventario.events.TipoProductoAgregado;
+import Inventario.events.*;
 import co.com.sofka.domain.generic.EventChange;
 
 public class InventarioChange extends EventChange {
@@ -20,6 +17,7 @@ public class InventarioChange extends EventChange {
             inventario.tipoProductos = event.getTipoProductos();
             inventario.productos = event.getProductos();
             inventario.descripcion = event.getDescripcionInventario();
+            inventario.tipo = event.getTipo();
         });
 
         apply((ProductoAgregado event) -> {
@@ -38,13 +36,17 @@ public class InventarioChange extends EventChange {
         apply((TipoProductoAgregado event) -> {
             var numProductos = inventario.tipoProductos.size();
             if (numProductos == 5){
-                throw new IllegalArgumentException("No se puede agregar mas de 10 Tipo de Producto");
+                throw new IllegalArgumentException("No se puede agregar mas de 5 Tipo de Producto");
             }
             inventario.tipoProductos.add(new TipoProducto(
                     event.getTipoProductoId(),
                     event.getNombre(),
                     event.getCantidad()
             ));
+        });
+
+        apply((TipoInventarioActualizado event) -> {
+            inventario.tipo = event.getTipo();
         });
     }
 }

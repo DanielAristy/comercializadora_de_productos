@@ -42,7 +42,8 @@ class CrearInventarioUseCaseTest {
                 InventarioId.of("lmnop"),
                 tipoProductos,
                 productos,
-                new Descripcion("Productos de la canasta familiar")
+                new Descripcion("Productos de la canasta familiar"),
+                new TipoInventario("Virtual")
         );
 
         //act

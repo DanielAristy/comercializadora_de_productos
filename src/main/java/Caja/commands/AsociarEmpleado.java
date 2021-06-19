@@ -8,7 +8,7 @@ public class AsociarEmpleado implements Command {
     private final CajaId cajaId;
     private final EmpleadoId empleadoId;
 
-    public AsociarEmpleado(CajaId cajaId, EmpleadoId empleadoId) {
+    public AsociarEmpleado(EmpleadoId empleadoId, CajaId cajaId) {
         this.cajaId = cajaId;
         this.empleadoId = empleadoId;
     }

@@ -1,12 +1,10 @@
 package Caja.usecase;
 
-import Caja.commands.CambiarEstado;
+import Caja.commands.AsociarEmpleado;
+import Caja.entity.Empleado;
 import Caja.events.CajaCreada;
-import Caja.events.EstadoCambiado;
-import Caja.values.CajaId;
-import Caja.values.Estado;
-import Caja.values.Fecha;
-import Caja.values.Total;
+import Caja.events.EmpleadoAsociado;
+import Caja.values.*;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
@@ -21,44 +19,47 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-class CambiarEstadoUseCaseTest {
+class AsociarEmpleadoUseCaseTest {
 
-    private CambiarEstadoUseCase cambiarEstadoUseCase;
+    private AsociarEmpleadoUseCase asociarEmpleadoUseCase;
+    private Empleado empleado;
 
     @Mock
     private DomainEventRepository repository;
 
     @BeforeEach
     public void setup(){
-        cambiarEstadoUseCase = new CambiarEstadoUseCase();
+        empleado = new Empleado(new EmpleadoId("xxx"), new Nombre("Daniel"), new Activo(true));
+        asociarEmpleadoUseCase = new AsociarEmpleadoUseCase();
         repository = mock(DomainEventRepository.class);
-        cambiarEstadoUseCase.addRepository(repository);
+        asociarEmpleadoUseCase.addRepository(repository);
     }
 
     @Test
-    void cambiarActivoHappyPath(){
+    void AsociarEmpleadoHappyPath(){
         //Arrange
-        var command = new CambiarEstado(
-                CajaId.of("1"),
-                new Estado(false)
+        var command = new AsociarEmpleado(
+                EmpleadoId.of("xxx"),
+                CajaId.of("www")
         );
-        when(repository.getEventsBy("1")).thenReturn(events());
+        when(repository.getEventsBy("www")).thenReturn(events());
         //Act
         var response = UseCaseHandler.getInstance()
-                .setIdentifyExecutor("1")
+                .setIdentifyExecutor("www")
                 .syncExecutor(
-                cambiarEstadoUseCase, new RequestCommand<>(command)
-        ).orElseThrow();
+                        asociarEmpleadoUseCase, new RequestCommand<>(command)
+                ).orElseThrow();
 
-        var eventos = response.getDomainEvents();
+        var events = response.getDomainEvents();
         //Assert
         //Evento
-        EstadoCambiado estadoCambiado = (EstadoCambiado)eventos.get(0);
-        Assertions.assertEquals("comercializadora.caja.estadocambiado", estadoCambiado.type);
+        EmpleadoAsociado empleadoAsociado = (EmpleadoAsociado) events.get(0);
+        Assertions.assertEquals("xxx", empleadoAsociado.getEmpleadoId().value());
     }
 
     private List<DomainEvent> events(){
@@ -69,3 +70,4 @@ class CambiarEstadoUseCaseTest {
         ));
     }
 }
+
