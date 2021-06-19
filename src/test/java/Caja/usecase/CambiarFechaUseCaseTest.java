@@ -1,8 +1,8 @@
 package Caja.usecase;
 
-import Caja.commands.CambiarEstado;
+import Caja.commands.CambiarFecha;
 import Caja.events.CajaCreada;
-import Caja.events.EstadoCambiado;
+import Caja.events.FechaCambiada;
 import Caja.values.CajaId;
 import Caja.values.Estado;
 import Caja.values.Fecha;
@@ -24,41 +24,46 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-class CambiarEstadoUseCaseTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    private CambiarEstadoUseCase cambiarEstadoUseCase;
+@RunWith(MockitoJUnitRunner.class)
+class CambiarFechaUseCaseTest {
+
+    private CambiarFechaUseCase cambiarFechaUseCase;
 
     @Mock
     private DomainEventRepository repository;
 
     @BeforeEach
     public void setup(){
-        cambiarEstadoUseCase = new CambiarEstadoUseCase();
+        cambiarFechaUseCase = new CambiarFechaUseCase();
         repository = mock(DomainEventRepository.class);
-        cambiarEstadoUseCase.addRepository(repository);
+        cambiarFechaUseCase.addRepository(repository);
     }
 
     @Test
-    void cambiarActivoHappyPath(){
+    void cambiarFechaHappyPath(){
         //Arrange
-        var command = new CambiarEstado(
-                CajaId.of("1"),
-                new Estado(false)
+        var command = new CambiarFecha(
+                CajaId.of("xx-xx"),
+                new Fecha(new Date())
         );
-        when(repository.getEventsBy("1")).thenReturn(events());
+        when(repository.getEventsBy("xx-xx")).thenReturn(events());
+
         //Act
+
         var response = UseCaseHandler.getInstance()
-                .setIdentifyExecutor("1")
+                .setIdentifyExecutor("xx-xx")
                 .syncExecutor(
-                cambiarEstadoUseCase, new RequestCommand<>(command)
-        ).orElseThrow();
+                        cambiarFechaUseCase, new RequestCommand<>(command)
+                ).orElseThrow();
 
         var events = response.getDomainEvents();
+
         //Assert
-        //Evento
-        EstadoCambiado estadoCambiado = (EstadoCambiado)events.get(0);
-        Assertions.assertEquals("comercializadora.caja.estadocambiado", estadoCambiado.type);
+
+        FechaCambiada fechaCambiada = (FechaCambiada)events.get(0);
+        Assertions.assertEquals("comercializadora.caja.fechacambiada",fechaCambiada.type);
     }
 
     private List<DomainEvent> events(){
@@ -68,4 +73,5 @@ class CambiarEstadoUseCaseTest {
                 new Fecha(new Date())
         ));
     }
+
 }

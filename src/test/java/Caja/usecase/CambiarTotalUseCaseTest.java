@@ -5,6 +5,7 @@ import Caja.events.CajaCreada;
 import Caja.events.TotalCambiado;
 import Caja.values.CajaId;
 import Caja.values.Estado;
+import Caja.values.Fecha;
 import Caja.values.Total;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,7 +70,8 @@ class CambiarTotalUseCaseTest {
     private List<DomainEvent> events(){
         return List.of(new CajaCreada(//Evento
                 new Estado(true),
-                new Total(2000.0)
+                new Total(2000.0),
+                new Fecha(new Date())
         ));
     }
 

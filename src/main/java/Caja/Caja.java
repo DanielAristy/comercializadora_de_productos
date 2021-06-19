@@ -1,28 +1,27 @@
 package Caja;
 
 import Caja.entity.Cliente;
-import Caja.events.CajaCreada;
-import Caja.events.EmpleadoAsociado;
-import Caja.events.EstadoCambiado;
-import Caja.events.TotalCambiado;
+import Caja.events.*;
 import Caja.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiFunction;
 
 public class Caja extends AggregateEvent<CajaId> {
     protected Estado estado;
     protected Total total;
+    protected Fecha fecha;
     protected ClienteId clienteId;
     protected EmpleadoId empleadoId;
     protected List<Cliente> clientes;
 
 
-    public Caja(CajaId id, Estado estado, Total total) {
+    public Caja(CajaId id, Estado estado, Total total, Fecha fecha) {
         super(id);
-        appendChange(new CajaCreada(estado, total)).apply();
+        appendChange(new CajaCreada(estado, total, fecha)).apply();
     }
 
     public static Caja from(CajaId cajaId, List<DomainEvent> events){
@@ -53,6 +52,10 @@ public class Caja extends AggregateEvent<CajaId> {
         return clientes.stream().filter(id -> id.equals(clienteId)).findFirst();
     }
 
+    public void cambiarFecha(Fecha fecha){
+        appendChange(new FechaCambiada(fecha)).apply();
+    }
+
     public Estado getEstado() {
         return estado;
     }
@@ -71,5 +74,9 @@ public class Caja extends AggregateEvent<CajaId> {
 
     public List<Cliente> getClientes() {
         return clientes;
+    }
+
+    public Fecha getFecha() {
+        return fecha;
     }
 }

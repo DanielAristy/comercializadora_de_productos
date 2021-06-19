@@ -12,7 +12,7 @@ public class CrearCajaUseCase extends UseCase<RequestCommand<CrearCaja>, Respons
     public void executeUseCase(RequestCommand<CrearCaja> crearCajaRequestCommand) {
         //
         var command = crearCajaRequestCommand.getCommand();
-        var caja = new Caja(command.getId(), command.getEstado(), command.getTotal());
+        var caja = new Caja(command.getId(), command.getEstado(), command.getTotal(), command.getFecha());
         emit().onResponse(new ResponseEvents(caja.getUncommittedChanges()));
     }
 }

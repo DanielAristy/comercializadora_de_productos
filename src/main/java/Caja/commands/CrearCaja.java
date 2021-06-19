@@ -1,20 +1,19 @@
 package Caja.commands;
 
-import Caja.values.Activo;
-import Caja.values.CajaId;
-import Caja.values.Estado;
-import Caja.values.Total;
+import Caja.values.*;
 import co.com.sofka.domain.generic.Command;
 
 public class CrearCaja implements Command {
     private final CajaId id;
     private final Estado estado;
     private final Total total;
+    private final Fecha fecha;
 
-    public CrearCaja(CajaId id, Estado estado, Total total) {
+    public CrearCaja(CajaId id, Estado estado, Total total, Fecha fecha) {
         this.id = id;
         this.estado = estado;
         this.total = total;
+        this.fecha = fecha;
     }
 
     public CajaId getId() {
@@ -27,5 +26,9 @@ public class CrearCaja implements Command {
 
     public Total getTotal() {
         return total;
+    }
+
+    public Fecha getFecha() {
+        return fecha;
     }
 }

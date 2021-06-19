@@ -2,15 +2,14 @@ package Caja.usecase;
 
 import Caja.commands.CrearCaja;
 import Caja.events.CajaCreada;
-import Caja.values.Activo;
-import Caja.values.CajaId;
-import Caja.values.Estado;
-import Caja.values.Total;
+import Caja.values.*;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.support.RequestCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +28,8 @@ class CrearCajaUseCaseTest {
         var command = new CrearCaja(
                 CajaId.of("adnlg"),
                 new Estado(true),
-                new Total(0.0)
+                new Total(0.0),
+                new Fecha(new Date())
         );
 
         //act
